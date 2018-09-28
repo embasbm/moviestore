@@ -16,3 +16,7 @@ Since we want to use react as frontend framework, will make the rails app api:
   end
   ```
 
+* First Movie Resource:
+  ```ruby
+    rails g scaffold Movie title text:text
+  ```
