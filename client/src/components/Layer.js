@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MoviesContainer from './components/MoviesContainer';
+import logo from '../assets/logo.svg';
+import '../styles/Layer.css';
+import MoviesContainer from './MoviesContainer';
 
 class App extends Component {
   render() {
