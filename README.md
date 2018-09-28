@@ -19,4 +19,6 @@ Since we want to use react as frontend framework, will make the rails app api:
 * First Movie Resource:
   ```ruby
     rails g scaffold Movie title text:text
+    rails g model Category name
+    rails g migration addCategoryIdToMovie category_id:integer
   ```
