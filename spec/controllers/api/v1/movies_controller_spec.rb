@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe MoviesController, type: :controller do
+RSpec.describe Api::V1::MoviesController, type: :controller do
 
   let(:valid_attributes) {
     {
@@ -45,7 +45,7 @@ RSpec.describe MoviesController, type: :controller do
         post :create, params: {movie: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(movie_url(Movie.last))
+        expect(response.location).to eq(api_v1_movie_url(Movie.last))
       end
     end
 
