@@ -20,6 +20,24 @@ exports[`Layer Should compare Layer component with a snapshot 1`] = `
   </header>
   <div
     className="movies-container"
-  />
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        placeholder="Title..."
+        required={true}
+        type="text"
+      />
+      <input
+        placeholder="Text..."
+        required={true}
+        type="text"
+      />
+      <button>
+        Add Movie
+      </button>
+    </form>
+  </div>
 </div>
 `;

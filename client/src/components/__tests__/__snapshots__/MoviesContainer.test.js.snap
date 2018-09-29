@@ -3,5 +3,23 @@
 exports[`MoviesContainer Should compare MoviesContainer component with a snapshot 1`] = `
 <div
   className="movies-container"
-/>
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      placeholder="Title..."
+      required={true}
+      type="text"
+    />
+    <input
+      placeholder="Text..."
+      required={true}
+      type="text"
+    />
+    <button>
+      Add Movie
+    </button>
+  </form>
+</div>
 `;

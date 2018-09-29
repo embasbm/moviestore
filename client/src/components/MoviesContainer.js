@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import NewMovieForm from './NewMovieForm';
 class MoviesContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       movies: []
     }
+    this.addNewMovie = this.addNewMovie.bind(this)
   }
 
   componentDidMount() {
@@ -17,6 +18,17 @@ class MoviesContainer extends Component {
         })
       })
       .catch(error => console.log(error))
+  }
+
+  addNewMovie(title, text) {
+    axios.post('/api/v1/movies.json', { movie: { title, text } })
+      .then(response => {
+        const movies = [...this.state.movies, response.data]
+        this.setState({ movies })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   render() {
@@ -30,6 +42,7 @@ class MoviesContainer extends Component {
             </div>
           )
         })}
+        <NewMovieForm onNewMovie={this.addNewMovie} />
       </div>
     )
   }
