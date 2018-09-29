@@ -7,7 +7,13 @@ jest.mock('axios');
 
 describe('Layer', () => {
   const resp = {
-    data: []
+    data: [
+      {
+        "id": 1,
+        "title": "spiderman",
+        "text": "Omnis repellat harum. Error beatae placeat. Ut minima nam."
+      }
+    ]
   };
   axios.get.mockImplementation(() => Promise.resolve(resp));
 
