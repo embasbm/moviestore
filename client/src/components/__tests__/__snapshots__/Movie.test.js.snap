@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Should compare Movie component with a snapshot 1`] = `
+<div
+  className="single-movie"
+>
+  <h4>
+    spiderman
+  </h4>
+  <p>
+    Omnis repellat harum. Error beatae placeat. Ut minima nam.
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Erase
+  </button>
+</div>
+`;
