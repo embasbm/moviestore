@@ -9,10 +9,11 @@ class MoviesContainer extends Component {
       movies: []
     }
     this.addNewMovie = this.addNewMovie.bind(this)
+    this.removeMovie = this.removeMovie.bind(this)
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/v1/movies.json')
+    axios.get('/api/v1/movies.json')
       .then(response => {
         this.setState({
           movies: response.data
@@ -32,12 +33,23 @@ class MoviesContainer extends Component {
       })
   }
 
+  removeMovie(id) {
+    axios.delete('/api/v1/movies/' + id)
+      .then(response => {
+        const movies = this.state.movies.filter(
+          movie => movie.id !== id
+        )
+        this.setState({ movies })
+      })
+      .catch(error => console.log(error))
+  }
+
   render() {
     return (
       <div className="movies-container">
         {this.state.movies.map(movie => {
           return (
-            <Movie movie={movie} />
+            <Movie key={movie.id} movie={movie} onremoveMovie={this.removeMovie} />
           )
         })}
         <NewMovieForm onNewMovie={this.addNewMovie} />

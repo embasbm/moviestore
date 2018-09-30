@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const NewMovieForm = ({ onNewMovie = f => f }) => {
-  let title, text
-  const submit = e => {
-    e.preventDefault()
-    onNewMovie(title.value, text.value)
-    title.value = ''
-    text.value = ''
-    title.focus()
+class NewMovieForm extends Component {
+  constructor(props) {
+    super(props)
+    this.titleInput = React.createRef();
+    this.textInput = React.createRef();
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  return (
-    <form onSubmit={submit}>
-      <input ref={input => title = input}
-        type="text"
-        placeholder="Title..." required />
-      <input ref={input => text = input}
-        type="text"
-        placeholder="Text..." required />
-      <button>Add Movie</button>
-    </form>
-  )
+  handleSubmit(e) {
+    e.preventDefault()
+    this.props.onNewMovie(this.titleInput.current.value, this.textInput.current.value)
+    this.titleInput.current.value = ''
+    this.textInput.current.value = ''
+    this.titleInput.current.focus()
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          ref={this.titleInput}
+          type="text"
+          placeholder="Title..." required />
+        <input
+          ref={this.textInput}
+          type="text"
+          placeholder="Text..." required />
+        <button>Add Movie</button>
+      </form>
+    )
+  }
 }
 
 export default NewMovieForm;
