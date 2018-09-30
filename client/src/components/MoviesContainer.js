@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NewMovieForm from './NewMovieForm';
+import EditMovieForm from './EditMovieForm';
 import Movie from './Movie';
 class MoviesContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movies: []
+      movies: [],
+      editingMovieId: null
     }
     this.addNewMovie = this.addNewMovie.bind(this)
     this.removeMovie = this.removeMovie.bind(this)
+    this.editingMovie = this.editingMovie.bind(this)
+    this.editMovie = this.editMovie.bind(this)
+
   }
 
   componentDidMount() {
@@ -44,13 +49,52 @@ class MoviesContainer extends Component {
       .catch(error => console.log(error))
   }
 
+  editingMovie(id) {
+    this.setState({
+      editingMovieId: id
+    })
+  }
+
+  editMovie(id, title, text) {
+    axios.put('/api/v1/movies/' + id, {
+      movie: {
+        title,
+        text
+      }
+    })
+      .then(response => {
+        const movies = this.state.movies;
+        movies[id - 1] = { id, title, text }
+        this.setState(() => ({
+          movies,
+          editingMovieId: null
+        }))
+      })
+      .catch(error => console.log(error));
+  }
+
   render() {
     return (
       <div className="movies-container">
         {this.state.movies.map(movie => {
-          return (
-            <Movie key={movie.id} movie={movie} onremoveMovie={this.removeMovie} />
-          )
+          if (this.state.editingMovieId === movie.id) {
+            return (
+              <EditMovieForm
+                movie={movie}
+                key={movie.id}
+                editMovie={this.editMovie}
+              />
+            )
+          } else {
+            return (
+              <Movie
+                key={movie.id}
+                movie={movie}
+                onremoveMovie={this.removeMovie}
+                editingMovie={this.editingMovie}
+              />
+            )
+          }
         })}
         <NewMovieForm onNewMovie={this.addNewMovie} />
       </div>

@@ -15,5 +15,10 @@ exports[`Movie Should compare Movie component with a snapshot 1`] = `
   >
     Erase
   </button>
+  <button
+    onClick={[Function]}
+  >
+    Edit
+  </button>
 </div>
 `;
