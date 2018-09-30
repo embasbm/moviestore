@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NewMovieForm from './NewMovieForm';
+import Movie from './Movie';
 class MoviesContainer extends Component {
   constructor(props) {
     super(props)
@@ -36,10 +37,7 @@ class MoviesContainer extends Component {
       <div className="movies-container">
         {this.state.movies.map(movie => {
           return (
-            <div className="single-movie" key={movie.id}>
-              <h4>{movie.title}</h4>
-              <p>{movie.text}</p>
-            </div>
+            <Movie movie={movie} />
           )
         })}
         <NewMovieForm onNewMovie={this.addNewMovie} />
