@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditMovieForm Should compare EditMovieForm component with a snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    name="title"
+    onChange={[Function]}
+    placeholder="Title..."
+    type="text"
+    value="spiderman"
+  />
+  <input
+    name="text"
+    onChange={[Function]}
+    placeholder="Excerpt..."
+    type="text"
+    value="Omnis repellat harum. Error beatae placeat. Ut minima nam."
+  />
+  <button>
+    Update Movie
+  </button>
+</form>
+`;
