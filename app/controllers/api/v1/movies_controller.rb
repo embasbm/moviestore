@@ -6,7 +6,7 @@ module Api::V1
     def index
       @movies = Movie.all
 
-      render json: @movies
+      render json: @movies.to_json(include: :category)
     end
 
     # GET /movies/1
