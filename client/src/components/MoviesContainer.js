@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Table } from 'react-bootstrap';
+
 import NewMovieForm from './NewMovieForm';
 import EditMovieForm from './EditMovieForm';
 import Movie from './Movie';
@@ -76,27 +78,33 @@ class MoviesContainer extends Component {
   render() {
     return (
       <div className="movies-container">
-        {this.state.movies.map(movie => {
-          if (this.state.editingMovieId === movie.id) {
-            return (
-              <EditMovieForm
-                movie={movie}
-                key={movie.id}
-                editMovie={this.editMovie}
-              />
-            )
-          } else {
-            return (
-              <Movie
-                key={movie.id}
-                movie={movie}
-                onremoveMovie={this.removeMovie}
-                editingMovie={this.editingMovie}
-              />
-            )
-          }
-        })}
         <NewMovieForm onNewMovie={this.addNewMovie} />
+        <Table striped condensed>
+          <tbody>
+            {this.state.movies.map(movie => {
+              if (this.state.editingMovieId === movie.id) {
+                return (
+                  <tr key={movie.id}>
+                    <EditMovieForm
+                      movie={movie}
+                      editMovie={this.editMovie}
+                    />
+                  </tr>
+                )
+              } else {
+                return (
+                  <tr key={movie.id}>
+                    <Movie
+                      movie={movie}
+                      onremoveMovie={this.removeMovie}
+                      editingMovie={this.editingMovie}
+                    />
+                  </tr>
+                )
+              }
+            })}
+          </tbody>
+        </Table>
       </div>
     )
   }

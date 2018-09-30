@@ -1,25 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditMovieForm Should compare EditMovieForm component with a snapshot 1`] = `
-<form
-  onSubmit={[Function]}
->
-  <input
-    name="title"
-    onChange={[Function]}
-    placeholder="Title..."
-    type="text"
-    value="spiderman"
-  />
-  <input
-    name="text"
-    onChange={[Function]}
-    placeholder="Excerpt..."
-    type="text"
-    value="Omnis repellat harum. Error beatae placeat. Ut minima nam."
-  />
-  <button>
-    Update Movie
-  </button>
-</form>
+<td>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="control-label"
+        htmlFor={undefined}
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        id="movieTitle"
+        label="Movie title"
+        name="title"
+        onChange={[Function]}
+        placeholder="spiderman"
+        type="text"
+      />
+      <label
+        className="control-label"
+        htmlFor={undefined}
+      >
+        Text
+      </label>
+      <textarea
+        className="form-control"
+        id="movieText"
+        label="Movie text"
+        name="text"
+        onChange={[Function]}
+        placeholder="Omnis repellat harum. Error beatae placeat. Ut minima nam."
+        type="text"
+      />
+    </div>
+    <button
+      className="btn btn-default"
+      disabled={false}
+      type="submit"
+    >
+      Update Movie
+    </button>
+  </form>
+</td>
 `;

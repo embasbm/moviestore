@@ -4,22 +4,59 @@ exports[`MoviesContainer Should compare MoviesContainer component with a snapsho
 <div
   className="movies-container"
 >
-  <form
-    onSubmit={[Function]}
+  <div
+    className="panel panel-primary"
   >
-    <input
-      placeholder="Title..."
-      required={true}
-      type="text"
-    />
-    <input
-      placeholder="Text..."
-      required={true}
-      type="text"
-    />
-    <button>
-      Add Movie
-    </button>
-  </form>
+    <div
+      className="panel-body"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label"
+            htmlFor={undefined}
+          >
+            Title
+          </label>
+          <input
+            className="form-control"
+            id="movieTitle"
+            label="Movie title"
+            placeholder="Title..."
+            type="text"
+          />
+          <label
+            className="control-label"
+            htmlFor={undefined}
+          >
+            Text
+          </label>
+          <textarea
+            className="form-control"
+            id="movieText"
+            label="Movie text"
+            placeholder="Text..."
+            type="text"
+          />
+        </div>
+        <button
+          className="btn btn-default"
+          disabled={false}
+          type="submit"
+        >
+          Add Movie
+        </button>
+      </form>
+    </div>
+  </div>
+  <table
+    className="table table-striped table-condensed"
+  >
+    <tbody />
+  </table>
 </div>
 `;
