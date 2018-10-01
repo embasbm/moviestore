@@ -42,6 +42,18 @@ exports[`MoviesContainer Should compare MoviesContainer component with a snapsho
             placeholder="Text..."
             type="text"
           />
+          <label
+            className="control-label"
+            htmlFor={undefined}
+          >
+            Category
+          </label>
+          <select
+            className="form-control"
+            id={undefined}
+            placeholder="select"
+            type={undefined}
+          />
         </div>
         <button
           className="btn btn-default"

@@ -39,6 +39,24 @@ exports[`NewMovieForm Should compare NewMovieForm component with a snapshot 1`] 
           placeholder="Text..."
           type="text"
         />
+        <label
+          className="control-label"
+          htmlFor={undefined}
+        >
+          Category
+        </label>
+        <select
+          className="form-control"
+          id={undefined}
+          placeholder="select"
+          type={undefined}
+        >
+          <option
+            value={1}
+          >
+            foo
+          </option>
+        </select>
       </div>
       <button
         className="btn btn-default"

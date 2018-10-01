@@ -6,14 +6,16 @@ class NewMovieForm extends Component {
     super(props)
     this.titleInput = React.createRef();
     this.textInput = React.createRef();
+    this.categoryId = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.onNewMovie(this.titleInput.value, this.textInput.value)
+    this.props.onNewMovie(this.titleInput.value, this.textInput.value, this.categoryId.value)
     this.titleInput.value = ''
     this.textInput.value = ''
+    this.categoryId.value = ''
     this.titleInput.focus()
   }
 
@@ -40,6 +42,18 @@ class NewMovieForm extends Component {
                 componentClass="textarea"
                 placeholder="Text..."
               />
+              <ControlLabel>Category</ControlLabel>
+              <FormControl
+                componentClass="select"
+                placeholder="select"
+                inputRef={ref => { this.categoryId = ref; }}
+                >
+                {this.props.categories.map(category => {
+                  return (
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                  )
+                })}
+              </FormControl>
             </FormGroup>
             <Button type="submit">Add Movie</Button>
           </form>

@@ -59,6 +59,18 @@ exports[`Layer Should compare Layer component with a snapshot 1`] = `
               placeholder="Text..."
               type="text"
             />
+            <label
+              className="control-label"
+              htmlFor={undefined}
+            >
+              Category
+            </label>
+            <select
+              className="form-control"
+              id={undefined}
+              placeholder="select"
+              type={undefined}
+            />
           </div>
           <button
             className="btn btn-default"

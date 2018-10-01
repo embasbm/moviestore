@@ -12,6 +12,11 @@ exports[`Movie Should compare Movie component with a snapshot 1`] = `
         className="panel-title"
       >
         spiderman
+        <span
+          className="badge"
+        >
+          N/A
+        </span>
       </h3>
     </div>
     <div

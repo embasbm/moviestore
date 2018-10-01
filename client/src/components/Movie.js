@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Panel, ListGroup, ListGroupItem, ButtonToolbar, Button } from 'react-bootstrap';
+import { Panel, Badge, ListGroup, ListGroupItem, ButtonToolbar, Button } from 'react-bootstrap';
 
 class Movie extends Component {
   render() {
-    const { movie, onremoveMovie, editingMovie} = this.props;
+    const { movie, category, onremoveMovie, editingMovie} = this.props;
     return (
       <td>
         <Panel bsStyle="primary">
           <Panel.Heading>
-            <Panel.Title componentClass="h3">{movie.title}</Panel.Title>
+            <Panel.Title componentClass="h3">
+              {movie.title}
+              <Badge>{category ? category.name : 'N/A'}</Badge>
+            </Panel.Title>
           </Panel.Heading>
           <Panel.Body>{movie.text}</Panel.Body>
           <ListGroup>

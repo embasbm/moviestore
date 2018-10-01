@@ -6,7 +6,8 @@ class EditMovieForm extends Component {
     this.state = {
       id: this.props.movie.id,
       title: this.props.movie.title,
-      text: this.props.movie.text
+      text: this.props.movie.text,
+      category_id: this.props.movie.category_id
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,8 +19,8 @@ class EditMovieForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { id, title, text } = this.state;
-    this.props.editMovie(id, title, text);
+    const { id, title, text, category_id } = this.state;
+    this.props.editMovie(id, title, text, category_id);
   }
 
   render() {
@@ -48,6 +49,20 @@ class EditMovieForm extends Component {
               placeholder={this.state.text}
               onChange={this.handleChange}
             />
+            <ControlLabel>Category</ControlLabel>
+            <FormControl
+              name="category_id"
+              componentClass="select"
+              placeholder="select"
+              inputRef={ref => { this.categoryId = ref; }}
+              onChange={this.handleChange}
+            >
+              {this.props.categories && this.props.categories.map(category => {
+                return (
+                  <option key={category.id} value={category.id} selected={category.id === this.state.category_id ? true : false}>{category.name}</option>
+                )
+              })}
+            </FormControl>
           </FormGroup>
           <Button type="submit">Update Movie</Button>
         </form>
