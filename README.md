@@ -21,4 +21,5 @@ Since we want to use react as frontend framework, will make the rails app api:
     rails g scaffold Movie title text:text
     rails g model Category name
     rails g migration addCategoryIdToMovie category_id:integer
+    rails g migration addUserIdToMovie user_id:integer
   ```
