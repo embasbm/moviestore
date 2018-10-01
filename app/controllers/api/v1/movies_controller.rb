@@ -6,7 +6,7 @@ module Api::V1
     def index
       @movies = Movie.all
 
-      render json: @movies
+      render json: @movies.to_json(include: :category)
     end
 
     # GET /movies/1
@@ -19,7 +19,7 @@ module Api::V1
       @movie = Movie.new(movie_params)
 
       if @movie.save
-        render json: @movie, status: :created, location: api_v1_movie_url(@movie)
+        render json: @movie.to_json(include: :category), status: :created, location: api_v1_movie_url(@movie)
       else
         render json: @movie.errors, status: :unprocessable_entity
       end
@@ -28,7 +28,7 @@ module Api::V1
     # PATCH/PUT /movies/1
     def update
       if @movie.update(movie_params)
-        render json: @movie
+        render json: @movie.to_json(include: :category)
       else
         render json: @movie.errors, status: :unprocessable_entity
       end
@@ -47,7 +47,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def movie_params
-        params.require(:movie).permit(:title, :text)
+        params.require(:movie).permit(:title, :text, :category_id)
       end
   end
 end
