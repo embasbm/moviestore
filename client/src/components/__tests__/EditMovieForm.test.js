@@ -11,10 +11,17 @@ describe('EditMovieForm', () => {
     "title": "spiderman",
     "text": "Omnis repellat harum. Error beatae placeat. Ut minima nam."
   };
+
+  const categories = [
+    {
+      id: 1,
+      name: 'foo'
+    }
+  ]
   axios.get.mockImplementation(() => Promise.resolve(resp));
 
   it('Should compare EditMovieForm component with a snapshot', () => {
-    const component = ReactTestRenderer.create(<EditMovieForm movie={movie} />);
+    const component = ReactTestRenderer.create(<EditMovieForm movie={movie} categories={categories} />);
     const json = component.toJSON();
     expect(json).toMatchSnapshot();
   })
