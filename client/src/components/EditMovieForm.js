@@ -35,7 +35,7 @@ class EditMovieForm extends Component {
               id="movieTitle"
               type="text"
               label="Movie title"
-              placeholder={this.state.title}
+              value={this.state.title}
               onChange={this.handleChange}
             />
             <ControlLabel>Text</ControlLabel>
@@ -46,7 +46,7 @@ class EditMovieForm extends Component {
               type="text"
               label="Movie text"
               componentClass="textarea"
-              placeholder={this.state.text}
+              value={this.state.text}
               onChange={this.handleChange}
             />
             <ControlLabel>Category</ControlLabel>

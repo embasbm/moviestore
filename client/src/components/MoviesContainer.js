@@ -77,7 +77,6 @@ class MoviesContainer extends Component {
         const movies = this.state.movies;
         const index = movies.indexOf(movies.find((e) => e.id === id));
         if (index >= 0) {
-          console.log('index: ', index)
           movies[index] = response.data
           this.setState(() => ({
             movies,

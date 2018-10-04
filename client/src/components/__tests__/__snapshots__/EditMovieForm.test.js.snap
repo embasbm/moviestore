@@ -20,8 +20,8 @@ exports[`EditMovieForm Should compare EditMovieForm component with a snapshot 1`
         label="Movie title"
         name="title"
         onChange={[Function]}
-        placeholder="spiderman"
         type="text"
+        value="spiderman"
       />
       <label
         className="control-label"
@@ -35,8 +35,8 @@ exports[`EditMovieForm Should compare EditMovieForm component with a snapshot 1`
         label="Movie text"
         name="text"
         onChange={[Function]}
-        placeholder="Omnis repellat harum. Error beatae placeat. Ut minima nam."
         type="text"
+        value="Omnis repellat harum. Error beatae placeat. Ut minima nam."
       />
       <label
         className="control-label"

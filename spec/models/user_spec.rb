@@ -28,4 +28,6 @@ RSpec.describe User, type: :model do
       expect(record_b.errors[:email]).to include("has already been taken")
     end
   end
+
+  it { is_expected.to have_many(:movies) }
 end
