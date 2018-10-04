@@ -18,4 +18,5 @@ RSpec.describe Movie, type: :model do
   end
 
   it { is_expected.to belong_to(:category) }
+  it { is_expected.to belong_to(:user) }
 end
