@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Grid, Row } from 'react-bootstrap';
 import Header from './Header';
 import MovieForm from './MovieForm';
 import MovieTable from './MovieTable';
@@ -46,13 +47,15 @@ class App extends Component {
     const { movies, categories } = this.state;
 
     return (
-      <div>
-        <Header title='Movies App' />
-        <div>
+      <Grid>
+        <Row>
+          <Header title='Movies App' />
+        </Row>
+        <Row>
           <MovieForm getMovies={this.getMovies} categories={categories} />
           <MovieTable movies={movies} getMovies={this.getMovies} />
-        </div>
-      </div>
+        </Row>
+      </Grid>
     )
   }
 }
