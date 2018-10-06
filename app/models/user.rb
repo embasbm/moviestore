@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates_presence_of :email, :password
+  validates_presence_of :email
   validates :email, uniqueness: true
 
   has_many :movies
