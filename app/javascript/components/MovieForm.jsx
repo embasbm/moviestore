@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Panel, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 
-class NewMovieForm extends Component {
+class MovieForm extends Component {
   constructor(props) {
     super(props)
     this.titleInput = React.createRef();
     this.textInput = React.createRef();
     this.categoryId = React.createRef();
-    this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.createMovie = this.createMovie.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
-    this.props.onNewMovie(this.titleInput.value, this.textInput.value, this.categoryId.value)
-    this.titleInput.value = ''
-    this.textInput.value = ''
-    this.categoryId.value = ''
-    this.titleInput.focus()
+  createMovie(event) {
+    event.preventDefault();
+    axios.post('/api/v1/movies.json', {movie: { title: this.titleInput.value, text: this.textInput.value, category_id: this.categoryId.value }})
+      .then(()=> {
+        this.titleInput.value = ''
+        this.textInput.value = ''
+        this.categoryId.value = ''
+        this.titleInput.focus()
+        this.props.getMovies()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   render() {
+
     return (
       <Panel bsStyle="primary">
         <Panel.Body>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.createMovie}>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl
-                inputRef={ref => {this.titleInput = ref;}}
+                inputRef={ref => { this.titleInput = ref; }}
                 id="movieTitle"
                 type="text"
                 label="Movie title"
@@ -47,8 +56,8 @@ class NewMovieForm extends Component {
                 componentClass="select"
                 placeholder="select"
                 inputRef={ref => { this.categoryId = ref; }}
-                >
-                {this.props.categories.map(category => {
+              >
+                {this.props.categories && this.props.categories.map(category => {
                   return (
                     <option key={category.id} value={category.id}>{category.name}</option>
                   )
@@ -59,8 +68,9 @@ class NewMovieForm extends Component {
           </form>
         </Panel.Body>
       </Panel>
+
     )
   }
 }
 
-export default NewMovieForm;
+export default MovieForm;
