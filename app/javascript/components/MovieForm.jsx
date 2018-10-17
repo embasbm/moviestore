@@ -4,11 +4,11 @@ import { Panel, ControlLabel, FormGroup, FormControl, Button } from 'react-boots
 class MovieForm extends Component {
 
   render() {
-    const { categories, actions } = this.props;
+    const { categories, movieActions } = this.props;
     return (
       <Panel bsStyle="primary">
         <Panel.Body>
-          <form>
+          <form onSubmit={movieActions.createMovie}>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl

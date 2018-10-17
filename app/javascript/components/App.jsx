@@ -18,14 +18,14 @@ class App extends Component {
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies, movieActions } = this.props;
     return (
       <Grid>
         <Row>
           <Header title='Movies App' />
         </Row>
         <Row>
-          <MovieForm />
+          <MovieForm movieActions={movieActions} />
           <MovieTable movies={movies} />
         </Row>
       </Grid>
