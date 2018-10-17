@@ -1,38 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Panel, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
 
 class MovieForm extends Component {
-  constructor(props) {
-    super(props)
-    this.titleInput = React.createRef();
-    this.textInput = React.createRef();
-    this.categoryId = React.createRef();
-
-    this.createMovie = this.createMovie.bind(this);
-  }
-
-  createMovie(event) {
-    event.preventDefault();
-    axios.post('/api/v1/movies.json', {movie: { title: this.titleInput.value, text: this.textInput.value, category_id: this.categoryId.value }})
-      .then(()=> {
-        this.titleInput.value = ''
-        this.textInput.value = ''
-        this.categoryId.value = ''
-        this.titleInput.focus()
-        this.props.getMovies()
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
 
   render() {
-
+    const { categories, actions } = this.props;
     return (
       <Panel bsStyle="primary">
         <Panel.Body>
-          <form onSubmit={this.createMovie}>
+          <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl
@@ -57,7 +33,7 @@ class MovieForm extends Component {
                 placeholder="select"
                 inputRef={ref => { this.categoryId = ref; }}
               >
-                {this.props.categories && this.props.categories.map(category => {
+                {categories && categories.map(category => {
                   return (
                     <option key={category.id} value={category.id}>{category.name}</option>
                   )

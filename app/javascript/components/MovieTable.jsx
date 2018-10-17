@@ -8,19 +8,18 @@ class MovieTable extends Component {
   }
 
   render() {
-    const { movies, getMovies } = this.props;
+    const { movies } = this.props;
 
     return (
       <div className="movies-container">
         <Table>
           <tbody>
-            {movies && movies.map(movie => {
+            {movies.map(movie => {
               return (
                 <MovieRow
                   key={movie.id}
                   movie={movie}
                   category={movie.category}
-                  getMovies={getMovies}
                 />
               )
             })}
