@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row } from 'react-bootstrap';
 import Header from './Header';
-import MovieForm from './MovieForm';
-import MovieTable from './MovieTable';
+import MovieForm from './movie/MovieForm';
+import MovieTable from './movie/MovieTable';
 
 class App extends Component {
   constructor(props) {

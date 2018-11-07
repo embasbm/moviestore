@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/App';
-
+import Routes from './routes';
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App />,
-    document.getElementById('movies-app')
+    <Routes />, document.getElementById('movies-store'),
   )
-})
+});
