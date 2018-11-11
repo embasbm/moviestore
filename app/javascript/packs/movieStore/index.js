@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import Routes from './routes';
+
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
+  render(
     <Routes />, document.getElementById('movies-store'),
   )
 });
