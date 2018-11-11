@@ -8,7 +8,7 @@ class MovieTable extends Component {
   }
 
   render() {
-    const { movies, getMovies } = this.props;
+    const { movies } = this.props;
 
     return (
       <div className="movies-container">
@@ -20,7 +20,6 @@ class MovieTable extends Component {
                   key={movie.id}
                   movie={movie}
                   category={movie.category}
-                  getMovies={getMovies}
                 />
               )
             })}

@@ -1,63 +1,52 @@
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as moviesActions from '../actions/moviesActions';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import { Grid, Row } from 'react-bootstrap';
 import Header from './Header';
 import MovieForm from './movie/MovieForm';
 import MovieTable from './movie/MovieTable';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      movies: [],
-      categories: [],
-    }
-
-    this.getMovies = this.getMovies.bind(this);
-    this.getCategories = this.getCategories.bind(this);
-  }
-
-  componentDidMount() {
-    this.getMovies()
-    this.getCategories()
-  }
-
-  getMovies() {
-    axios.get('/api/v1/movies.json')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        })
-      })
-      .catch(error => console.log(error))
-  }
-
-  getCategories() {
-    axios.get('/api/v1/categories.json')
-      .then(response => {
-        this.setState({
-          categories: response.data
-        })
-      })
-      .catch(error => console.log(error))
+  componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
+    this.props.moviesActions.fetchMovies();
   }
 
   render() {
-    const { movies, categories } = this.state;
-
     return (
       <Grid>
         <Row>
           <Header title='Movies App' />
         </Row>
         <Row>
-          <MovieForm getMovies={this.getMovies} categories={categories} />
-          <MovieTable movies={movies} getMovies={this.getMovies} />
+          {/* <MovieForm getMovies={this.getMovies} categories={categories} /> */}
+          <MovieTable movies={this.props.movies} />
         </Row>
       </Grid>
     )
   }
 }
 
-export default App;
+App.propTypes = {
+  moviesActions: PropTypes.object,
+  movies: PropTypes.array
+};
+
+function mapStateToProps(state) {
+  return {
+    movies: state.movies
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    moviesActions: bindActionCreators(moviesActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
