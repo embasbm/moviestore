@@ -1,38 +1,20 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { Panel, ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
-
+import * as categoriesActions from '../../actions/categoriesActions';
 class MovieForm extends Component {
-  constructor(props) {
-    super(props)
-    this.titleInput = React.createRef();
-    this.textInput = React.createRef();
-    this.categoryId = React.createRef();
-
-    this.createMovie = this.createMovie.bind(this);
-  }
-
-  createMovie(event) {
-    event.preventDefault();
-    axios.post('/api/v1/movies.json', {movie: { title: this.titleInput.value, text: this.textInput.value, category_id: this.categoryId.value }})
-      .then(()=> {
-        this.titleInput.value = ''
-        this.textInput.value = ''
-        this.categoryId.value = ''
-        this.titleInput.focus()
-        this.props.getMovies()
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+  componentWillMount() { // HERE WE ARE TRIGGERING THE ACTION
+    this.props.categoriesActions.fetchCategories();
   }
 
   render() {
-
     return (
       <Panel bsStyle="primary">
         <Panel.Body>
-          <form onSubmit={this.createMovie}>
+          {/* <form onSubmit={this.props.createMovie}> */}
+          <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <FormControl
@@ -73,4 +55,24 @@ class MovieForm extends Component {
   }
 }
 
-export default MovieForm;
+MovieForm.propTypes = {
+  moviesActions: PropTypes.object,
+  categories: PropTypes.array
+};
+
+function mapStateToProps(state) {
+  return {
+    categories: state.categories
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    categoriesActions: bindActionCreators(categoriesActions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieForm);

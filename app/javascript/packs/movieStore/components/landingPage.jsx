@@ -21,7 +21,7 @@ class App extends Component {
           <Header title='Movies App' />
         </Row>
         <Row>
-          {/* <MovieForm getMovies={this.getMovies} categories={categories} /> */}
+          <MovieForm />
           <MovieTable movies={this.props.movies} />
         </Row>
       </Grid>
